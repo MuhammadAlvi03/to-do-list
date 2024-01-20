@@ -1,11 +1,8 @@
 /**
- * Main storage object to keep references to storages
- * Initially contains inbox, today, and thisWeek storages
+ * Main storage object to keep references to storages, initially contains allTasks
  */
 export const storages = {
-    inbox: [],
-    today: [],
-    thisWeek: [],
+    allTasks: [],
 }
 
 /**
@@ -19,11 +16,11 @@ export function createStorage(storageName) {
 }
 
 /**
- * Adds a task to a target storage or inbox storage if no storage is given
+ * Adds a task to a target storage, or allTasks storage if no storage is given
  * @param {object} task Task object to add to storage
  * @param {string} storageName Name of target storage in which the task will be added
  */
-export function addTaskToStorage(task, storageName = 'inbox') {
+export function addTaskToStorage(task, storageName = 'allTasks') {
     let storage = storages[storageName] ? storages[storageName] : createStorage(storageName);
     storage.push(task);
 }
@@ -33,7 +30,7 @@ export function addTaskToStorage(task, storageName = 'inbox') {
  * @param {string} taskID ID of task to delete
  * @param {string} storageName Name of storage in which task is stored
  */
-export function deleteTaskFromStorage(taskID, storageName = 'inbox') {
+export function deleteTaskFromStorage(taskID, storageName = 'allTasks') {
     const storage = storages[storageName];
     const taskIndex = storage.findIndex(task => task.id === taskID);
     storage.splice(taskIndex, 1);
