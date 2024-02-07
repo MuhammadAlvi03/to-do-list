@@ -3,17 +3,22 @@ const createStorageManager = () => {
      * Main storage object to keep references to storages, initially contains 'All Tasks'
      */
     const storages = {
-        "All Tasks": [],
+        'Main Storages': {
+            'All Tasks': [],
+            'Today': [],
+            'This Week': []
+        },
+        'Projects': {}
     };
 
     /**
-     * Creates a new storage (array) and adds it to storages object
-     * @param {string} storageName Name of storage to create
+     * Creates a new project storage (array) within storages object
+     * @param {string} projectName Name of project storage to create
      * @returns {Array} Empty array representing the new storage
      */
-    const createStorage = (storageName) => {
-        storages[storageName] = [];
-        return storages[storageName];
+    const createProjectStorage = (projectName) => {
+        storages['Main Storages'][projectName] = [];
+        return storages['Main Storages'][projectName];
     };
 
     /**
@@ -21,8 +26,8 @@ const createStorageManager = () => {
      * @param {object} task Task object to add to storage
      * @param {string} storageName Name of target storage in which the task will be added
      */
-    const addTaskToStorage = (task, storageName = "All Tasks") => {
-        let storage = storages[storageName];
+    const addTaskToStorage = (task, storageName = "All Tasks", storageType = 'Main Storages') => {
+        let storage = storages[storageType][storageName];
         storage.push(task);
     };
 
@@ -31,14 +36,15 @@ const createStorageManager = () => {
      * @param {string} taskID ID of task to delete
      * @param {string} storageName Name of storage in which task is stored
      */
-    const deleteTaskFromStorage = (taskID, storageName) => {
-        const storage = storages[storageName];
+    const deleteTaskFromStorage = (taskID, storageName, storageType = 'Main Storages') => {
+        const storage = storages[storageType][storageName];
         const taskIndex = storage.findIndex((task) => task.id === taskID);
         storage.splice(taskIndex, 1);
     };
 
+
     return {
-        createStorage,
+        createProjectStorage,
         addTaskToStorage,
         deleteTaskFromStorage,
         getStorages: () => storages,
