@@ -1,7 +1,7 @@
 import { addWeeks, isBefore } from "date-fns";
 
 const createFilterManager = (storages) => {
-    const allTasksStorage = storages["All Tasks"];
+    const allTasksStorage = storages['Main Storages']["All Tasks"];
 
     /**
      * Checks if task's deadline is today
@@ -21,7 +21,7 @@ const createFilterManager = (storages) => {
     function filterToday(storages) {
         const todayArr = [];
         todayArr.push(allTasksStorage.filter((task) => deadlineIsToday(task)));
-        storages["Today"] = todayArr;
+        storages['Main Storages']["Today"] = todayArr;
     }
 
     /**
@@ -44,7 +44,7 @@ const createFilterManager = (storages) => {
         thisWeekArr.push(
             allTasksStorage.filter((task) => deadlineIsThisWeek(task))
         );
-        storages.thisWeek = thisWeekArr;
+        storages['Main Storages']['This Week'] = thisWeekArr;
     }
 
     return {
