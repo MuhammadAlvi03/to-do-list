@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 7vh;
+}
+
+
+.footer {
+    height: 5vh;
+}
+
+ul {
+    padding-left: 0;
+}
+
+.content {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-bar {
+    width: 15vw;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.main-nav-container,
+.project-nav-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.main-storages-list,
+.project-list {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.main-storages-list > li > button,
+.project-list > li > button {
+    width: 100%;
+}
+
+.project-nav-container {
+    gap: 1rem;
+}
+
+
+
+.task-content-container {
+    flex-grow: 1;
+    
+    display: flex;
+    justify-content: center;
+}
+
+.task-content {
+    height: 100%;
+    width: 100%;
+    padding: 2rem 5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.task-content > h2 {
+    margin-bottom: 1rem;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.task-item {
+    display: flex;
+    gap: 3rem;
+}
+
+.create-task-btn.hidden {
+    display: none;
+}
+
+.create-task-input-container.hidden {
+    display: none;
+}
+
+.directory-btn.active {
+    background-color: green;
+}
+
+.create-project-btn.hidden {
+    display: none;
+}
+
+
+.create-project-input-container {
+    display: flex;
+}
+
+
+.create-project-input-container.hidden {
+    display: none;
+}
+
+#create-project-title {
+    width: 80%;
+}
+
+#submit-project-btn {
+    flex-grow: 1;
+}
+
