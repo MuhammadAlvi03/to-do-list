@@ -4,6 +4,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
+    devServer: {
+        liveReload: false,
+        hot: false,
+        static: {
+            directory: './dist'
+        },
+        open: true,
+        port: 3000,
+    },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'To-Do list',
