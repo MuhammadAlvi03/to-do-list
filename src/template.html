@@ -1,11 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>To-Do List</title>
+    </head>
+    <body>
+        <div class="header"><h1>To-Do List</h1></div>
+        <div class="content">
+            <nav class="nav-bar">
+                <div class="main-nav-container">
+                    <h3>Home</h3>
+                    <ul class="main-storages-list">
+                        <li>
+                            <button class="directory-btn active" id="All Tasks">
+                                All Tasks
+                            </button>
+                        </li>
+                        <li>
+                            <button class="directory-btn" id="Today">
+                                Today
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="project-nav-container">
+                    <h3>Projects</h3>
+                    <ul class="project-list">
+                        <li>
+                            <button
+                                class="directory-btn-inactive"
+                                id="Project 1"
+                            >
+                                Project 1
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                class="directory-btn-inactive"
+                                id="Project 2"
+                            >
+                                Project 2
+                            </button>
+                        </li>
+                    </ul>
+                    <div
+                        class="create-project-input-container hidden"
+                        id="create-project-input-container"
+                    >
+                        <input type="text" id="create-project-title" />
+                        <button type="submit" id="submit-project-btn">+</button>
+                    </div>
+                    <button class="create-project-btn" id="create-project-btn">
+                        New project
+                    </button>
+                </div>
+            </nav>
+            <div class="task-content-container">
+                <div class="task-content">
+                    <h2>Task Title</h2>
+                    <ul class="task-list">
+                        <li>
+                            <div
+                                class="create-task-input-container hidden"
+                                id="create-task-input-container"
+                            >
+                                <p>
+                                    <input type="text" id="create-task-title" />
+                                    <input
+                                        type="date"
+                                        id="create-task-deadline"
+                                    />
+                                </p>
+                                <button id="submit-task-btn">Add Task</button>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="create-task-btn active" id="create-task-btn">
+                        New Task
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="footer">MuhammadAlvi03</div>
+    </body>
 </html>
