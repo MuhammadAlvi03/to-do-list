@@ -1,4 +1,4 @@
-import { addWeeks, isBefore } from "date-fns";
+import { addWeeks, isBefore, format, isAfter } from "date-fns";
 
 const createFilterManager = (storages) => {
     const allTasksStorage = storages['Main Storages']["All Tasks"];
@@ -9,7 +9,7 @@ const createFilterManager = (storages) => {
      * @returns {boolean} true if task's deadline is today, otherwise false
      */
     function deadlineIsToday(task) {
-        const today = new Date().toLocaleDateString();
+        const today = format(new Date(), 'MM/dd/yyyy')
         if (task.deadline === today) return true;
         return false;
     }
@@ -19,9 +19,7 @@ const createFilterManager = (storages) => {
      * @param {object} storages Main storages object
      */
     function filterToday(storages) {
-        const todayArr = [];
-        todayArr.push(allTasksStorage.filter((task) => deadlineIsToday(task)));
-        storages['Main Storages']["Today"] = todayArr;
+        storages['Main Storages']["Today"] = allTasksStorage.filter((task) => deadlineIsToday(task));
     }
 
     /**
@@ -31,7 +29,8 @@ const createFilterManager = (storages) => {
      */
     function deadlineIsThisWeek(task) {
         const nextWeek = addWeeks(new Date(), 1);
-        if (isBefore(task.deadline, nextWeek)) return true;
+        const today = new Date();
+        if (isBefore(task.deadline, nextWeek) && isAfter(task.deadline, today)) return true;
         return false;
     }
 
@@ -40,11 +39,7 @@ const createFilterManager = (storages) => {
      * @param {object} storages Main storages object
      */
     function filterThisWeek(storages) {
-        const thisWeekArr = [];
-        thisWeekArr.push(
-            allTasksStorage.filter((task) => deadlineIsThisWeek(task))
-        );
-        storages['Main Storages']['This Week'] = thisWeekArr;
+        storages['Main Storages']['This Week'] = allTasksStorage.filter((task) => deadlineIsThisWeek(task));
     }
 
     return {
