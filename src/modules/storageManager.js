@@ -1,6 +1,6 @@
 const createStorageManager = () => {
     /**
-     * Main storage object to keep references to storages, initially contains 'All Tasks'
+     * Main storage object to keep references to storages
      */
     const storages = {
         'Main Storages': {
@@ -12,13 +12,18 @@ const createStorageManager = () => {
     };
 
     /**
+     * Map to keep references to tasks via task ID
+     */
+    const taskMap = new Map();
+
+    /**
      * Creates a new project storage (array) within storages object
      * @param {string} projectName Name of project storage to create
      * @returns {Array} Empty array representing the new storage
      */
     const createProjectStorage = (projectName) => {
-        storages['Main Storages'][projectName] = [];
-        return storages['Main Storages'][projectName];
+        storages['Projects'][projectName] = [];
+        return storages['Projects'][projectName];
     };
 
     /**
@@ -30,6 +35,31 @@ const createStorageManager = () => {
         let storage = storages[storageType][storageName];
         storage.push(task);
     };
+
+
+    /**
+     * Adds task to taskMap, sets key to task ID and value to the task object
+     * @param {object} task Task object
+     */
+    const addTaskToMap = (task) => {
+        if (!taskMap.has(task.id)) {
+            taskMap.set(task.id, task);
+        } else {
+            console.log('Task already in map');
+        }
+    }
+
+    /**
+     * Deletes task from taskMap
+     * @param {string} taskID 
+     */
+    const deleteTaskFromMap = (taskID) => {
+        if (taskMap.has(taskID)) {
+            taskMap.delete(taskID);
+        } else {
+            console.log('Could not find task to delete in taskMap')
+        }
+    }
 
     /**
      * Deletes a task from storage array
@@ -43,10 +73,28 @@ const createStorageManager = () => {
     };
 
 
+    /**
+     * Finds a task with a given ID within taskMap
+     * @param {string} taskID ID of task to lookup
+     * @returns {object} Task object associated with ID
+     */
+    const findTask = (taskID) => {
+        if (taskMap.has(taskID)) {
+            return taskMap.get(taskID);
+        } else {
+            console.log('Could not find task in taskMap')
+            return undefined;
+        }
+    };
+
+
     return {
         createProjectStorage,
         addTaskToStorage,
+        addTaskToMap,
         deleteTaskFromStorage,
+        deleteTaskFromMap,
+        findTask,
         getStorages: () => storages,
     };
 };
